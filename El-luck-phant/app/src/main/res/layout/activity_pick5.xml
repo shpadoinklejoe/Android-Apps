@@ -12,13 +12,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="5"/>
 
         // Play A
         <LinearLayout
             android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="14"
             android:layout_height="0dp"
             android:orientation="horizontal">
 
@@ -161,7 +161,7 @@
         <LinearLayout
             android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="14"
             android:layout_height="0dp"
             android:orientation="horizontal">
 
@@ -304,7 +304,7 @@
         <LinearLayout
             android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="14"
             android:layout_height="0dp"
             android:orientation="horizontal">
 
@@ -447,7 +447,7 @@
         <LinearLayout
             android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="14"
             android:layout_height="0dp"
             android:orientation="horizontal">
 
@@ -590,7 +590,7 @@
         <LinearLayout
             android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="14"
             android:layout_height="0dp"
             android:orientation="horizontal">
 
@@ -732,12 +732,9 @@
         // button to generate lottery numbers
         <Button
             android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="10"
             android:layout_height="0dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_margin="20dp"
             android:gravity="center"
             android:textSize="24dp"
             android:text="Generate Lucky Numbers" />
@@ -754,7 +751,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="9"
             android:gravity="center"
             android:text="Back"/>
 
