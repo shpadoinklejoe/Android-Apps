@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        // buffer
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        // Play A
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:orientation="horizontal">
+
+            // ball 1
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 2
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="23"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 3
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="44"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 4
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="52"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 5
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="71"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // mega ball
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/yellowball"/>
+                <TextView
+                    android:text="15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        // Play B
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:orientation="horizontal">
+
+            // ball 1
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 2
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="23"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 3
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="44"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 4
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="52"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 5
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="71"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // mega ball
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/yellowball"/>
+                <TextView
+                    android:text="15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        // Play C
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:orientation="horizontal">
+
+            // ball 1
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 2
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="23"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 3
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="44"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 4
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="52"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 5
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="71"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // mega ball
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/yellowball"/>
+                <TextView
+                    android:text="15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        // Play D
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:orientation="horizontal">
+
+            // ball 1
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 2
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="23"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 3
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="44"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 4
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="52"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 5
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="71"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // mega ball
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/yellowball"/>
+                <TextView
+                    android:text="15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        // Play E
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:orientation="horizontal">
+
+            // ball 1
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 2
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="23"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 3
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="44"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 4
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="52"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // ball 5
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/smallball"/>
+                <TextView
+                    android:text="71"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+
+            // mega ball
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/yellowball"/>
+                <TextView
+                    android:text="15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        // button to generate lottery numbers
+        <Button
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textSize="24dp"
+            android:text="Generate Lucky Numbers" />
+
+
+        // border
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+
+        // back button
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Back"/>
+
+    </LinearLayout>
+
+</LinearLayout>
