@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.jrgun.elluckphant.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by jrgun on 4/11/2017.
  */
 
 public class FivePlayActivity extends AppCompatActivity {
+
+    private ArrayList<ArrayList<TextView>> balls;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,5 +46,20 @@ public class FivePlayActivity extends AppCompatActivity {
         });
 
 
-    }
-}
+        // generate 5 sets of lotto numbers
+        Button generate = (Button) findViewById(R.id.generate5);
+        generate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+
+        });
+
+    } // end onCreate
+
+
+
+
+} // end class

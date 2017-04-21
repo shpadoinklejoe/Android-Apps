@@ -24,7 +24,6 @@ import butterknife.BindView;
 
 public class OnePlayActivity extends AppCompatActivity {
 
-    private ArrayList<Integer> lottoNumbers;
     private ArrayList<TextView> balls;
     private ArrayList<ImageView> pick5ticket;
     private ArrayList<ImageView> megaticket;
@@ -59,9 +58,9 @@ public class OnePlayActivity extends AppCompatActivity {
             }
         });
 
-        // generates 5 numbers
-        Button generate1 = (Button) findViewById(R.id.generate1);
-        generate1.setOnClickListener(new View.OnClickListener() {
+        // generate 1 set of lotto numbers
+        Button generate = (Button) findViewById(R.id.generate1);
+        generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -85,7 +84,7 @@ public class OnePlayActivity extends AppCompatActivity {
                 }
 
                 // generate lotto numbers
-                lottoNumbers = new GenerateNumbers().getNums();
+                ArrayList<Integer> lottoNumbers = new GenerateNumbers().getNums();
                 System.out.println(lottoNumbers);
 
                 // update ball TextViews with lotto numbers
@@ -102,7 +101,7 @@ public class OnePlayActivity extends AppCompatActivity {
             }
         });
 
-    }
+    } // end onCreate
 
     // add ball TextViews to an array
     void fillBalls()
