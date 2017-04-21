@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.example.jrgun.elluckphant.R;
 import com.example.jrgun.elluckphant.model.GenerateNumbers;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -21,14 +23,22 @@ import butterknife.BindView;
 
 public class OnePlayActivity extends AppCompatActivity {
 
-    @BindView(R.id.ball1)
-    TextView ball1;
     ArrayList<Integer> lottoNumbers;
+    ArrayList<TextView> balls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_1play);
+
+        // add ball TextViews to an array
+        balls = new ArrayList<>();
+        balls.add((TextView) findViewById(R.id.ball1));
+        balls.add((TextView) findViewById(R.id.ball2));
+        balls.add((TextView) findViewById(R.id.ball3));
+        balls.add((TextView) findViewById(R.id.ball4));
+        balls.add((TextView) findViewById(R.id.ball5));
+        balls.add((TextView) findViewById(R.id.megaball));
 
         // to main
         Button toMainFrom1Play = (Button)findViewById(R.id.toMainFrom1Play);
@@ -56,16 +66,16 @@ public class OnePlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+
+                // generate lotto numbers
                 lottoNumbers = new GenerateNumbers().getNums();
                 System.out.println(lottoNumbers);
-                System.out.println(Integer.toString(lottoNumbers.get(0)));
 
-                if(ball1 == null)
+                // update ball TextViews with lotto numbers
+                for(int i=0; i<lottoNumbers.size(); ++i)
                 {
-                    System.out.println("FFFFFFFFFFFFFFFFFFFFFFF");
-                    ball1 = (TextView) findViewById(R.id.ball1);
+                    balls.get(i).setText(Integer.toString(lottoNumbers.get(i)));
                 }
-                ball1.setText(Integer.toString(lottoNumbers.get(0)));
             }
         });
 
