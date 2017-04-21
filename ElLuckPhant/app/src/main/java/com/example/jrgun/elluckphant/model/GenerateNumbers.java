@@ -22,6 +22,7 @@ public class GenerateNumbers {
         this.nums = generateRandom();
     }
 
+
     // getter for ArrayList of lotto balls
     public ArrayList<Integer> getNums()
     {
@@ -49,12 +50,12 @@ public class GenerateNumbers {
         return randNums;
     }
 
+
     // to print without typing out "system.out.println"
     public void print()
     {
         System.out.println(this);
     }
-
 
     // nicely formatted lotto numbers
     public String toString()
