@@ -1,4 +1,4 @@
-package com.example.jrgun.elluckphant;
+package com.something.jrgun.elluckphant;
 
 import org.junit.Test;
 

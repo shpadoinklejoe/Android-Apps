@@ -1,4 +1,4 @@
-package com.example.jrgun.elluckphant.controller;
+package com.something.jrgun.elluckphant.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,12 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.jrgun.elluckphant.R;
-import com.example.jrgun.elluckphant.model.GenerateNumbers;
+import com.something.jrgun.elluckphant.R;
+import com.something.jrgun.elluckphant.model.GenerateNumbers;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 

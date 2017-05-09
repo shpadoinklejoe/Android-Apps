@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jrgun.elluckphant">
+    package="com.something.jrgun.elluckphant">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.MainActivity">
+        <activity android:name="com.something.jrgun.elluckphant.controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,15 +17,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".controller.MainMenuActivity">
+        <activity android:name="com.something.jrgun.elluckphant.controller.MainMenuActivity">
 
         </activity>
 
-        <activity android:name=".controller.OnePlayActivity">
+        <activity android:name="com.something.jrgun.elluckphant.controller.OnePlayActivity">
 
         </activity>
 
-        <activity android:name=".controller.FivePlayActivity">
+        <activity android:name="com.something.jrgun.elluckphant.controller.FivePlayActivity">
 
         </activity>
 

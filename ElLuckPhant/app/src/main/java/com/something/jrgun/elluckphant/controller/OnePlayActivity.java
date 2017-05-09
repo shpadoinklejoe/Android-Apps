@@ -1,22 +1,17 @@
-package com.example.jrgun.elluckphant.controller;
+package com.something.jrgun.elluckphant.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.jrgun.elluckphant.R;
-import com.example.jrgun.elluckphant.model.GenerateNumbers;
-
-import org.w3c.dom.Text;
+import com.something.jrgun.elluckphant.R;
+import com.something.jrgun.elluckphant.model.GenerateNumbers;
 
 import java.util.ArrayList;
-
-import butterknife.BindView;
 
 /**
  * Created by jrgun on 4/11/2017.

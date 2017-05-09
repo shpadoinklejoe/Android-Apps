@@ -1,4 +1,4 @@
-package com.example.jrgun.elluckphant.model;
+package com.something.jrgun.elluckphant.model;
 
 import java.util.ArrayList;
 import java.util.Random;

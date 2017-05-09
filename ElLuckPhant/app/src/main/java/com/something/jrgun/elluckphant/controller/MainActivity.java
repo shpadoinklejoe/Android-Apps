@@ -1,4 +1,4 @@
-package com.example.jrgun.elluckphant.controller;
+package com.something.jrgun.elluckphant.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.jrgun.elluckphant.R;
+import com.something.jrgun.elluckphant.R;
 
 public class MainActivity extends AppCompatActivity {
 
