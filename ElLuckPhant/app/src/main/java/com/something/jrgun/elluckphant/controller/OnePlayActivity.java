@@ -78,9 +78,12 @@ public class OnePlayActivity extends AppCompatActivity {
                     }
                 }
 
+
                 // generate lotto numbers
-                ArrayList<Integer> lottoNumbers = new GenerateNumbers().getNums();
-                System.out.println(lottoNumbers);
+                GenerateNumbers gn = new GenerateNumbers(true);
+                ArrayList<Integer> lottoNumbers = gn.getNums();
+                System.out.println(gn);
+
 
                 // update ball TextViews with lotto numbers
                 for(int i=0; i<5; ++i)
