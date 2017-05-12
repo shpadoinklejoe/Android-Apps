@@ -96,7 +96,7 @@ public class GenerateNumbers
     // Generates numbers based on frequency count
     // Key = lotto ball face value
     // Value = number of times ball picked
-    private ArrayList<Integer> statisticalPicks()
+    public ArrayList<Integer> statisticalPicks()
     {
         ArrayList<Integer> randNums = new ArrayList<>();
         double ratio = 1/15.0; // (5/75) == (1/15)
@@ -139,7 +139,7 @@ public class GenerateNumbers
     // Takes all numbers not pulled under its ratio
     // Randomizes them and evenly distributes them over 5 plays
     // ( because it's not good to over-play a single (randomly chosen) number multiple times )
-    void statisticalPlay5()
+    public void statisticalPlay5()
     {
         ArrayList<Integer> play5pick5 = new ArrayList<>();
         ArrayList<Integer> play5mega = new ArrayList<>();
@@ -175,6 +175,10 @@ public class GenerateNumbers
                 play5.add(new ArrayList<Integer>());
             }
 
+            if( play5.get(i).size() == 0 )
+            {
+                return;
+            }
             play5.get(i/5).add( play5pick5.get(i) );
 
         }

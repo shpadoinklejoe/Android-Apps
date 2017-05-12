@@ -22,6 +22,7 @@ public class OnePlayActivity extends AppCompatActivity {
     private ArrayList<TextView> balls;
     private ArrayList<ImageView> pick5ticket;
     private ArrayList<ImageView> megaticket;
+    private GenerateNumbers gn;
 
 
     @Override
@@ -53,6 +54,10 @@ public class OnePlayActivity extends AppCompatActivity {
             }
         });
 
+
+        // create lotto object that fills  statistical HashMaps
+        gn = new GenerateNumbers();
+
         // generate 1 set of lotto numbers
         Button generate = (Button) findViewById(R.id.generate1);
         generate.setOnClickListener(new View.OnClickListener() {
@@ -80,9 +85,8 @@ public class OnePlayActivity extends AppCompatActivity {
 
 
                 // generate lotto numbers
-                GenerateNumbers gn = new GenerateNumbers(true);
-                ArrayList<Integer> lottoNumbers = gn.getNums();
-                System.out.println(gn);
+                ArrayList<Integer> lottoNumbers = gn.statisticalPicks();
+                System.out.println(lottoNumbers);
 
 
                 // update ball TextViews with lotto numbers
@@ -90,11 +94,11 @@ public class OnePlayActivity extends AppCompatActivity {
                 {
                     int number = lottoNumbers.get(i);
                     balls.get(i).setText( Integer.toString(number) );
-                    pick5ticket.get(number-1).setVisibility(View.VISIBLE);
+                    pick5ticket.get(number-1).setVisibility(View.VISIBLE); // -1 because array 0 indexed
                 }
                 int number = lottoNumbers.get(5);
                 balls.get(5).setText( Integer.toString(number) );
-                megaticket.get(number-1).setVisibility(View.VISIBLE);
+                megaticket.get(number-1).setVisibility(View.VISIBLE); // -1 because array 0 indexed
 
             }
         });

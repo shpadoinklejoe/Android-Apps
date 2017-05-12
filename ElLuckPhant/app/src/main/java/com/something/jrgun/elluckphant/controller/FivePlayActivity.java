@@ -21,6 +21,7 @@ public class FivePlayActivity extends AppCompatActivity
 {
 
     private ArrayList<ArrayList<TextView>> balls;
+    private GenerateNumbers gn;
 
 
     @Override
@@ -52,16 +53,39 @@ public class FivePlayActivity extends AppCompatActivity
         });
 
 
+        // create lotto object that fills  statistical HashMaps
+        gn = new GenerateNumbers();
+
         // generate 5 sets of lotto numbers
         Button generate = (Button) findViewById(R.id.generate5);
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                // generate lotto numbers
+                gn.statisticalPlay5();
+                ArrayList<ArrayList<Integer>> play5 = gn.getPlay5();
+
+                for(int i=0; i<5; ++i)
+                {
+                    if( play5.get(i).size() == 0 )
+                    {
+                        break;
+                    }
+                    System.out.println(play5.get(i));
+
+                    // update ball TextViews with lotto numbers
+                    for(int j=0; j<6; ++j)
+                    {
+                        balls.get(i).get(j).setText( Integer.toString(play5.get(i).get(j)) );
+                    }
+                }
+
+                // if loading from file fails -> just randomly generate numbers
                 for(int i=0; i<5; ++i)
                 {
                     // generate lotto numbers
-                    ArrayList<Integer> lottoNumbers = new GenerateNumbers().getNums();
+                    ArrayList<Integer> lottoNumbers = gn.statisticalPicks();
                     System.out.println(lottoNumbers);
 
                     // update ball TextViews with lotto numbers
