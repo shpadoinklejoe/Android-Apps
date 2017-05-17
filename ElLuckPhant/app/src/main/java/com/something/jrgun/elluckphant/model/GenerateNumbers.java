@@ -1,5 +1,13 @@
 package com.something.jrgun.elluckphant.model;
 
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.something.jrgun.elluckphant.R;
 
 import java.io.File;
@@ -26,6 +34,9 @@ public class GenerateNumbers
     private HashMap<Integer, Integer> pick5stats; // keeps track of how many times
     private HashMap<Integer, Integer> megaBstats; // each ball has been picked
     private ArrayList<ArrayList<Integer>> play5 = new ArrayList<ArrayList<Integer>>();
+    private String text;
+    private FirebaseDatabase fbdb;
+    private DatabaseReference dbref;
 
 
     // default constructor
@@ -153,7 +164,7 @@ public class GenerateNumbers
                 play5pick5.add(e.getKey());
             }
         }
-        Collections.shuffle(play5pick5); // sort for sequential output
+        Collections.shuffle(play5pick5); // shuffle the order of poolable numbers
         System.out.println(play5pick5);
 
         // generate Mega Ball numbers
@@ -196,21 +207,46 @@ public class GenerateNumbers
 
 
     // fill stats for pick 5 from file
-    private void fill5stats()
-    {
+    private void fill5stats() {
         pick5stats = new HashMap<>();
         int numCheck = 0;
 
-        for( int i=1; i<=75; ++i )
-        {
-            pick5stats.put( i, 0 ); // initialize with zeros
+        for (int i = 1; i <= 75; ++i) {
+            pick5stats.put(i, 0); // initialize with zeros
         }
 
-        try{
-            Scanner scan = new Scanner(new FileReader("winning5.txt"));
+        fbdb = FirebaseDatabase.getInstance();
+        dbref = fbdb.getReference("winning5");
+        //try{
+        //Scanner scan = new Scanner(new FileReader("winning5.txt"));
+        //FirebaseDatabase.getInstance().getReference("winning5").addValueEventListener(new ValueEventListener() {
+        dbref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-            while (scan.hasNext() ) {
-                String text = scan.nextLine();
+                Log.e("ENTERING THIS FUNCTION?", "YYYYYYYYEEEEEEEESSSSSSSS");
+                text = dataSnapshot.getValue(String.class);
+                System.out.println(text);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        if (text == null)
+        {
+            Log.e("CANNOT RETRIEVE DATA", "DATABASE DATA == NULL");
+            System.out.println("NO: " + text);
+        }
+        else{
+            System.out.println("YES: " + text);
+        }
+
+           // while (scan.hasNext() ) {
+                //String text = scan.nextLine();
+            if(text != null){
                 String[] split = text.split("\\s+");
 
                 for(String s : split)
@@ -218,13 +254,13 @@ public class GenerateNumbers
                     int num = Integer.parseInt(s);
                     pick5stats.put(num, pick5stats.get(num)+1 ); // increment stat count;
                 }
-                ++numCheck;
+                //++numCheck;
             }
-            scan.close();
+            //scan.close();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        //} catch (FileNotFoundException e) {
+        //    e.printStackTrace();
+        //}
 
         System.out.println(pick5stats);
         System.out.println(numCheck);
