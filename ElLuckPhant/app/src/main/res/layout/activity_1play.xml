@@ -1083,7 +1083,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="24dp"
-        android:text="Generate Lucky Numbers" />
+        android:text="Generate Random Numbers" />
 
 
     // border

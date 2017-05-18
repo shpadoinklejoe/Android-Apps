@@ -21,39 +21,34 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- * Created by jrgun on 4/19/2017.
+ * Creates arrays of numbers to display
  */
 
 public class GenerateNumbers
 {
-    private Random rand = new Random();
+    static Random rand = new Random();
 
     // class variables
-    private double numOfLottos = 0;
+    private double numOfLottos;
     private ArrayList<Integer> nums; // array for pick 5 and mega ball to be returned
     private HashMap<Integer, Integer> pick5stats; // keeps track of how many times
     private HashMap<Integer, Integer> megaBstats; // each ball has been picked
-    private ArrayList<ArrayList<Integer>> play5 = new ArrayList<ArrayList<Integer>>();
-    private String text;
-    private FirebaseDatabase fbdb;
-    private DatabaseReference dbref;
-
 
     // default constructor
-    // used for multiple number pulls that share same statMaps
+    // generates numbers randomly
     public GenerateNumbers()
     {
-        fill5stats();
-        fillMegaStats();
-        this.nums = null;
+        System.out.println("default constructor");
+        this.nums = generateRandom();
     }
 
-    // constructor for individual number pulls
-    public GenerateNumbers(boolean b)
+    // constructor for statistical play
+    public GenerateNumbers(HashMap<Integer, Integer> pick5, HashMap<Integer, Integer> mega, double num )
     {
-        fill5stats();
-        fillMegaStats();
-        this.nums = statisticalPicks();
+        System.out.println("statistical constructor");
+        pick5stats = pick5;
+        megaBstats = mega;
+        numOfLottos = num;
     }
 
 
@@ -75,15 +70,10 @@ public class GenerateNumbers
         return megaBstats;
     }
 
-    // getter for 5 sets of lotto numbers
-    public ArrayList<ArrayList<Integer>> getPlay5()
-    {
-        return play5;
-    }
 
 
     // generate lotto numbers randomly
-    ArrayList<Integer> generateRandom()
+    public static ArrayList<Integer> generateRandom()
     {
         ArrayList<Integer> randNums = new ArrayList<>();
 
@@ -104,54 +94,76 @@ public class GenerateNumbers
     }
 
 
-    // Generates numbers based on frequency count
+    // Generates 1 set of numbers based on frequency count
     // Key = lotto ball face value
     // Value = number of times ball picked
-    public ArrayList<Integer> statisticalPicks()
+    private ArrayList<Integer> statisticalPicks()
     {
-        ArrayList<Integer> randNums = new ArrayList<>();
-        double ratio = 1/15.0; // (5/75) == (1/15)
+        System.out.println(pick5stats);
+        System.out.println(megaBstats);
+        System.out.println(numOfLottos);
 
-        // Generate Pick 5
-        for(int i=0; i<5; ++i )
+        if(pick5stats == null || megaBstats == null || numOfLottos == 0)
         {
-            int num = rand.nextInt(100); // no number is favored when modding by multiple of 10
-            ++num; // since random number chosen was between 0 -> 74
+            Log.e("WARNING", "THERE WAS A PROBLEM GENERATING STATISTICS");
+            return generateRandom();
+        }
+        else{
+            ArrayList<Integer> randNums = new ArrayList<>();
+            double ratio = 1 / 15.0; // (5/75) == (1/15)
 
-            // since modding to get random number is statistically flawed
-            while( num > 75 || (pick5stats.get(num)/numOfLottos) > ratio || randNums.contains(num) )
-            {
+            // Generate Pick 5
+            for (int i = 0; i < 5; ++i) {
+                int num = rand.nextInt(100); // no number is favored when modding by multiple of 10
+                ++num; // since random number chosen was between 0 -> 74
+
+
+                // since modding to get random number is statistically flawed
+                while (num > 75 || (pick5stats.get(num) / numOfLottos) > ratio || randNums.contains(num)) {
+                    num = rand.nextInt(100);
+                    ++num;
+                }
+
+
+                randNums.add(num); // add number
+                //pick5stats.put(num, pick5stats.get(num)+1 ); // increment count
+
+            }
+            Collections.sort(randNums); // sort for sequential output
+
+            // generate Mega Ball
+            int num = rand.nextInt(100);
+            ++num;
+            while (num > 15 || (megaBstats.get(num) / numOfLottos) > ratio) {
                 num = rand.nextInt(100);
                 ++num;
             }
 
-            randNums.add( num ); // add number
-            //pick5stats.put(num, pick5stats.get(num)+1 ); // increment count
+            randNums.add(num); // add number
+            //megaBstats.put( num, megaBstats.get(num)+1 ); // increment count
 
-        }
-        Collections.sort(randNums); // sort for sequential output
-
-        // generate Mega Ball
-        int num = rand.nextInt(100);
-        ++num;
-        while( num > 15 || (megaBstats.get(num)/numOfLottos) > ratio )
-        {
-            num = rand.nextInt(100);
-            ++num;
+            return randNums;
         }
 
-        randNums.add( num ); // add number
-        //megaBstats.put( num, megaBstats.get(num)+1 ); // increment count
-
-        return randNums;
     }
 
 
     // Takes all numbers not pulled under its ratio
     // Randomizes them and evenly distributes them over 5 plays
     // ( because it's not good to over-play a single (randomly chosen) number multiple times )
-    public void statisticalPlay5()
+    public ArrayList<ArrayList<Integer>> statisticalPlay5()
     {
+        System.out.println(pick5stats);
+        System.out.println(megaBstats);
+        System.out.println(numOfLottos);
+
+        if(pick5stats == null || megaBstats == null || numOfLottos == 0)
+        {
+            Log.e("WARNING", "THERE WAS A PROBLEM GENERATING STATISTICS");
+            return null;
+        }
+
+        ArrayList<ArrayList<Integer>> play5 = new ArrayList<ArrayList<Integer>>();
         ArrayList<Integer> play5pick5 = new ArrayList<>();
         ArrayList<Integer> play5mega = new ArrayList<>();
         double ratio = 1/15.0; // (5/75) == (1/15)
@@ -188,7 +200,7 @@ public class GenerateNumbers
 
             if( play5.get(i).size() == 0 )
             {
-                return;
+                break;
             }
             play5.get(i/5).add( play5pick5.get(i) );
 
@@ -203,99 +215,8 @@ public class GenerateNumbers
             ++play;
         }
 
+        return play5;
     }
-
-
-    // fill stats for pick 5 from file
-    private void fill5stats() {
-        pick5stats = new HashMap<>();
-        int numCheck = 0;
-
-        for (int i = 1; i <= 75; ++i) {
-            pick5stats.put(i, 0); // initialize with zeros
-        }
-
-        fbdb = FirebaseDatabase.getInstance();
-        dbref = fbdb.getReference("winning5");
-        //try{
-        //Scanner scan = new Scanner(new FileReader("winning5.txt"));
-        //FirebaseDatabase.getInstance().getReference("winning5").addValueEventListener(new ValueEventListener() {
-        dbref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Log.e("ENTERING THIS FUNCTION?", "YYYYYYYYEEEEEEEESSSSSSSS");
-                text = dataSnapshot.getValue(String.class);
-                System.out.println(text);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        if (text == null)
-        {
-            Log.e("CANNOT RETRIEVE DATA", "DATABASE DATA == NULL");
-            System.out.println("NO: " + text);
-        }
-        else{
-            System.out.println("YES: " + text);
-        }
-
-           // while (scan.hasNext() ) {
-                //String text = scan.nextLine();
-            if(text != null){
-                String[] split = text.split("\\s+");
-
-                for(String s : split)
-                {
-                    int num = Integer.parseInt(s);
-                    pick5stats.put(num, pick5stats.get(num)+1 ); // increment stat count;
-                }
-                //++numCheck;
-            }
-            //scan.close();
-
-        //} catch (FileNotFoundException e) {
-        //    e.printStackTrace();
-        //}
-
-        System.out.println(pick5stats);
-        System.out.println(numCheck);
-    }
-
-    // fill stats for mega ball from file
-    private void fillMegaStats()
-    {
-        megaBstats = new HashMap<>();
-
-        for( int i=1; i<=15; ++i )
-        {
-            megaBstats.put( i, 0 ); // initialize with zeros
-        }
-
-        try{
-            Scanner scan = new Scanner(new FileReader("@raw/winningmega.txt"));
-
-            while (scan.hasNext() )
-            {
-                int num = Integer.parseInt(scan.nextLine());
-                megaBstats.put(num, megaBstats.get(num)+1 ); // increment stat count;
-
-                ++numOfLottos;
-            }
-            scan.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(megaBstats);
-        System.out.println(numOfLottos);
-    }
-
 
     // to print without typing out "system.out.println"
     public void print()

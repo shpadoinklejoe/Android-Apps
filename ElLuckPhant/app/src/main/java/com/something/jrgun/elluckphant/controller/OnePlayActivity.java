@@ -14,7 +14,8 @@ import com.something.jrgun.elluckphant.model.GenerateNumbers;
 import java.util.ArrayList;
 
 /**
- * Created by jrgun on 4/11/2017.
+ * This Activity generates the numbers randomly
+ * So user can compare the random numbers to the statistical generated numbers
  */
 
 public class OnePlayActivity extends AppCompatActivity {
@@ -22,7 +23,6 @@ public class OnePlayActivity extends AppCompatActivity {
     private ArrayList<TextView> balls;
     private ArrayList<ImageView> pick5ticket;
     private ArrayList<ImageView> megaticket;
-    private GenerateNumbers gn;
 
 
     @Override
@@ -54,10 +54,6 @@ public class OnePlayActivity extends AppCompatActivity {
             }
         });
 
-
-        // create lotto object that fills  statistical HashMaps
-        gn = new GenerateNumbers();
-
         // generate 1 set of lotto numbers
         Button generate = (Button) findViewById(R.id.generate1);
         generate.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +81,7 @@ public class OnePlayActivity extends AppCompatActivity {
 
 
                 // generate lotto numbers
-                ArrayList<Integer> lottoNumbers = gn.statisticalPicks();
+                ArrayList<Integer> lottoNumbers = new GenerateNumbers().getNums();
                 System.out.println(lottoNumbers);
 
 

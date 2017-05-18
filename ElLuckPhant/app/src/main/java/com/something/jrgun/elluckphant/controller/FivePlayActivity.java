@@ -9,19 +9,21 @@ import android.widget.TextView;
 
 import com.something.jrgun.elluckphant.R;
 import com.something.jrgun.elluckphant.model.GenerateNumbers;
+import com.something.jrgun.elluckphant.model.GetNumbers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Created by jrgun on 4/11/2017.
+ * Generates 5 sets of numbers from lotto stats
+ * (There is no repeating numbers in those 5 sets)
  */
 
 public class FivePlayActivity extends AppCompatActivity
 {
 
     private ArrayList<ArrayList<TextView>> balls;
-    private GenerateNumbers gn;
+    GenerateNumbers generateNumbers;
 
 
     @Override
@@ -31,6 +33,9 @@ public class FivePlayActivity extends AppCompatActivity
 
         // fill TextView Arrays
         fillBalls();
+
+        // generate stats
+        GetNumbers gs = new GetNumbers();
 
         // to main
         Button toMainFrom5Plays = (Button)findViewById(R.id.toMainFrom5Plays);
@@ -54,7 +59,7 @@ public class FivePlayActivity extends AppCompatActivity
 
 
         // create lotto object that fills  statistical HashMaps
-        gn = new GenerateNumbers();
+        generateNumbers = new GenerateNumbers(gs.getPick5stats(), gs.getMegaBstats(), gs.getNumOfLottos());
 
         // generate 5 sets of lotto numbers
         Button generate = (Button) findViewById(R.id.generate5);
@@ -63,12 +68,11 @@ public class FivePlayActivity extends AppCompatActivity
             public void onClick(View v) {
 
                 // generate lotto numbers
-                gn.statisticalPlay5();
-                ArrayList<ArrayList<Integer>> play5 = gn.getPlay5();
+                ArrayList<ArrayList<Integer>> play5 = generateNumbers.statisticalPlay5();
 
                 for(int i=0; i<5; ++i)
                 {
-                    if( play5.get(i).size() == 0 )
+                    if( play5 == null )
                     {
                         break;
                     }
@@ -85,7 +89,7 @@ public class FivePlayActivity extends AppCompatActivity
                 for(int i=0; i<5; ++i)
                 {
                     // generate lotto numbers
-                    ArrayList<Integer> lottoNumbers = gn.statisticalPicks();
+                    ArrayList<Integer> lottoNumbers = generateNumbers.generateRandom();
                     System.out.println(lottoNumbers);
 
                     // update ball TextViews with lotto numbers
