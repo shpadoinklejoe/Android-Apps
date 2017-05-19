@@ -51,6 +51,16 @@ public class GenerateNumbers
         numOfLottos = num;
     }
 
+    private int countLottos()
+    {
+        int count = 0;
+        for( Map.Entry<Integer, Integer> e : megaBstats.entrySet() )
+        {
+            count += e.getValue();
+        }
+
+        return count;
+    }
 
     // getter for ArrayList of lotto balls
     public ArrayList<Integer> getNums()
@@ -99,6 +109,8 @@ public class GenerateNumbers
     // Value = number of times ball picked
     private ArrayList<Integer> statisticalPicks()
     {
+        numOfLottos = countLottos();
+
         System.out.println(pick5stats);
         System.out.println(megaBstats);
         System.out.println(numOfLottos);
@@ -153,6 +165,8 @@ public class GenerateNumbers
     // ( because it's not good to over-play a single (randomly chosen) number multiple times )
     public ArrayList<ArrayList<Integer>> statisticalPlay5()
     {
+        numOfLottos = countLottos();
+
         System.out.println(pick5stats);
         System.out.println(megaBstats);
         System.out.println(numOfLottos);
@@ -187,7 +201,7 @@ public class GenerateNumbers
                 play5mega.add(e.getKey());
             }
         }
-        Collections.shuffle(play5mega); // sort for sequential output
+        Collections.shuffle(play5mega); // randomize
         System.out.println(play5mega + "\n");
 
         // fill 2D array with 5 sets of lotto numbers
@@ -198,10 +212,6 @@ public class GenerateNumbers
                 play5.add(new ArrayList<Integer>());
             }
 
-            if( play5.get(i).size() == 0 )
-            {
-                break;
-            }
             play5.get(i/5).add( play5pick5.get(i) );
 
         }

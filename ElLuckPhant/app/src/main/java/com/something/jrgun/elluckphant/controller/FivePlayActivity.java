@@ -70,32 +70,33 @@ public class FivePlayActivity extends AppCompatActivity
                 // generate lotto numbers
                 ArrayList<ArrayList<Integer>> play5 = generateNumbers.statisticalPlay5();
 
-                for(int i=0; i<5; ++i)
+                // if loading from file fails -> just randomly generate numbers
+                if( play5 == null )
                 {
-                    if( play5 == null )
+                    for(int i=0; i<5; ++i)
                     {
-                        break;
-                    }
-                    System.out.println(play5.get(i));
+                        // generate lotto numbers
+                        ArrayList<Integer> lottoNumbers = generateNumbers.generateRandom();
+                        System.out.println(lottoNumbers);
 
-                    // update ball TextViews with lotto numbers
-                    for(int j=0; j<6; ++j)
-                    {
-                        balls.get(i).get(j).setText( Integer.toString(play5.get(i).get(j)) );
+                        // update ball TextViews with lotto numbers
+                        for(int j=0; j<6; ++j)
+                        {
+                            balls.get(i).get(j).setText( Integer.toString(lottoNumbers.get(j)) );
+                        }
                     }
                 }
-
-                // if loading from file fails -> just randomly generate numbers
-                for(int i=0; i<5; ++i)
-                {
-                    // generate lotto numbers
-                    ArrayList<Integer> lottoNumbers = generateNumbers.generateRandom();
-                    System.out.println(lottoNumbers);
-
-                    // update ball TextViews with lotto numbers
-                    for(int j=0; j<6; ++j)
+                // else we can generate numbers based on statistics!!
+                else{
+                    for(int i=0; i<5; ++i)
                     {
-                        balls.get(i).get(j).setText( Integer.toString(lottoNumbers.get(j)) );
+                        System.out.println(play5.get(i));
+
+                        // update ball TextViews with lotto numbers
+                        for(int j=0; j<6; ++j)
+                        {
+                            balls.get(i).get(j).setText( Integer.toString(play5.get(i).get(j)) );
+                        }
                     }
                 }
 

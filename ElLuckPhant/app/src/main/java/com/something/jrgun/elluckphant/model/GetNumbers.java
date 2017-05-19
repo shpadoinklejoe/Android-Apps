@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 public class GetNumbers
 {
-    private double numOfLottos;
+    private static double numOfLottos;
     private HashMap<Integer, Integer> pick5stats; // keeps track of how many times
     private HashMap<Integer, Integer> megaBstats; // each ball has been picked
 
