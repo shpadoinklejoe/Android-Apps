@@ -7,8 +7,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.something.jrgun.elluckphant.R;
+import com.something.jrgun.elluckphant.model.GetNumbers;
 
 public class MainActivity extends AppCompatActivity {
+
+    // generate statistics
+    public static final GetNumbers GN = new GetNumbers();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

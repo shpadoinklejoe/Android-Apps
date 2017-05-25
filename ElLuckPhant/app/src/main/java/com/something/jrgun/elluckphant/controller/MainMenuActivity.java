@@ -41,5 +41,15 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+        // to Statistics
+        Button toStatsFromMain = (Button)findViewById(R.id.toStatsFromMain);
+        toStatsFromMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity( new Intent(MainMenuActivity.this, ChartViewActivity.class) );
+            }
+        });
+
     }
 }

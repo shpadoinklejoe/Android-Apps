@@ -14,6 +14,8 @@ import com.something.jrgun.elluckphant.model.GetNumbers;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.something.jrgun.elluckphant.controller.MainActivity.GN;
+
 /**
  * Generates 5 sets of numbers from lotto stats
  * (There is no repeating numbers in those 5 sets)
@@ -33,9 +35,6 @@ public class FivePlayActivity extends AppCompatActivity
 
         // fill TextView Arrays
         fillBalls();
-
-        // generate stats
-        GetNumbers gs = new GetNumbers();
 
         // to main
         Button toMainFrom5Plays = (Button)findViewById(R.id.toMainFrom5Plays);
@@ -59,6 +58,7 @@ public class FivePlayActivity extends AppCompatActivity
 
 
         // create lotto object that fills  statistical HashMaps
+        GetNumbers gs = GN;
         generateNumbers = new GenerateNumbers(gs.getPick5stats(), gs.getMegaBstats(), gs.getNumOfLottos());
 
         // generate 5 sets of lotto numbers

@@ -49,6 +49,10 @@ public class GenerateNumbers
         pick5stats = pick5;
         megaBstats = mega;
         numOfLottos = num;
+
+        System.out.println(pick5stats);
+        System.out.println(megaBstats);
+        System.out.println(numOfLottos);
     }
 
     private int countLottos()
@@ -109,8 +113,6 @@ public class GenerateNumbers
     // Value = number of times ball picked
     private ArrayList<Integer> statisticalPicks()
     {
-        numOfLottos = countLottos();
-
         System.out.println(pick5stats);
         System.out.println(megaBstats);
         System.out.println(numOfLottos);
@@ -165,8 +167,6 @@ public class GenerateNumbers
     // ( because it's not good to over-play a single (randomly chosen) number multiple times )
     public ArrayList<ArrayList<Integer>> statisticalPlay5()
     {
-        numOfLottos = countLottos();
-
         System.out.println(pick5stats);
         System.out.println(megaBstats);
         System.out.println(numOfLottos);

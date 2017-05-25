@@ -17,16 +17,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.something.jrgun.elluckphant.controller.MainMenuActivity">
-
+        <activity android:name="com.something.jrgun.elluckphant.controller.MainMenuActivity"
+            android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name="com.something.jrgun.elluckphant.controller.OnePlayActivity">
-
+        <activity android:name="com.something.jrgun.elluckphant.controller.OnePlayActivity"
+            android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name="com.something.jrgun.elluckphant.controller.FivePlayActivity">
+        <activity android:name="com.something.jrgun.elluckphant.controller.FivePlayActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
+        <activity android:name=".controller.ChartViewActivity"
+            android:screenOrientation= "landscape">
         </activity>
 
 
