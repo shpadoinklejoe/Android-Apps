@@ -9,19 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="20"
-        android:gravity="bottom|right"
+        android:layout_marginTop="5dp"
+        android:gravity="bottom|center"
         android:text="Tap Anywhere "
         android:textSize="50dp" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="75"
+        android:layout_weight="85"
         android:src="@drawable/dragon" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"/>
 
 </LinearLayout>

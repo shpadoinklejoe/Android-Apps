@@ -1082,7 +1082,7 @@
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="24dp"
+        android:textSize="20dp"
         android:text="Generate Random Numbers" />
 
 

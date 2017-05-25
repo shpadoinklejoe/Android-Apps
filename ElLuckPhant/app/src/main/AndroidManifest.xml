@@ -29,7 +29,11 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".controller.ChartViewActivity"
+        <activity android:name=".controller.Pick5ChartActivity"
+            android:screenOrientation= "landscape">
+        </activity>
+
+        <activity android:name=".controller.MegaChartActivity"
             android:screenOrientation= "landscape">
         </activity>
 

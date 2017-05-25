@@ -41,15 +41,28 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
-        // to Statistics
-        Button toStatsFromMain = (Button)findViewById(R.id.toStatsFromMain);
+
+        // to Pick5 Statistics
+        Button toStatsFromMain = (Button)findViewById(R.id.toPick5statsFromMain);
         toStatsFromMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                startActivity( new Intent(MainMenuActivity.this, ChartViewActivity.class) );
+                startActivity( new Intent(MainMenuActivity.this, Pick5ChartActivity.class) );
             }
         });
 
-    }
-}
+        // to Mega Balls Statistics
+        Button toMegaStatsFromMain = (Button)findViewById(R.id.toMegaStatsFromMain);
+        toMegaStatsFromMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity( new Intent(MainMenuActivity.this, MegaChartActivity.class) );
+            }
+        });
+
+
+
+    } // end On Create
+} // end class
