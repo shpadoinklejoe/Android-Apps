@@ -6,13 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.something.jrgun.elluckphant.HoldStats;
 import com.something.jrgun.elluckphant.R;
-import com.something.jrgun.elluckphant.model.GetNumbers;
+import com.something.jrgun.elluckphant.model.CalculateStats;
+import com.something.jrgun.elluckphant.model.GetLast25;
 
 public class MainActivity extends AppCompatActivity {
 
+    // check for updates in background
+    GetLast25 gl25 = new GetLast25();
+
     // generate statistics
-    public static final GetNumbers GN = new GetNumbers();
+    CalculateStats cs = new CalculateStats();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity( new Intent(MainActivity.this, MainMenuActivity.class) );
             }
         });
-
 
 
     }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.something.jrgun.elluckphant.HoldStats;
 import com.something.jrgun.elluckphant.R;
 
 /**
@@ -18,6 +19,10 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_mainmenu);
+
+//        System.out.println("DID STATS?" + HoldStats.getInstance().getPick5stats());
+//        System.out.println(HoldStats.getInstance().getMegaBstats());
+//        System.out.println(HoldStats.getInstance().getNumOfLottos());
 
 
         // to 1 Play

@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.something.jrgun.elluckphant.HoldStats;
 import com.something.jrgun.elluckphant.R;
 
 import java.io.File;
@@ -22,6 +23,8 @@ import java.util.Scanner;
 
 /**
  * Creates arrays of numbers to display
+ *
+ * Stats should already be calculated by the time this class is called
  */
 
 public class GenerateNumbers
@@ -30,7 +33,7 @@ public class GenerateNumbers
 
     // class variables
     private double numOfLottos;
-    private ArrayList<Integer> nums; // array for pick 5 and mega ball to be returned
+    private ArrayList<Integer> nums; // array for pick 5 and mega ball to be set for default constuctor
     private HashMap<Integer, Integer> pick5stats; // keeps track of how many times
     private HashMap<Integer, Integer> megaBstats; // each ball has been picked
 
@@ -43,12 +46,12 @@ public class GenerateNumbers
     }
 
     // constructor for statistical play
-    public GenerateNumbers(HashMap<Integer, Integer> pick5, HashMap<Integer, Integer> mega, double num )
+    public GenerateNumbers( int n )
     {
         System.out.println("statistical constructor");
-        pick5stats = pick5;
-        megaBstats = mega;
-        numOfLottos = num;
+        pick5stats = HoldStats.getInstance().getPick5stats();
+        megaBstats = HoldStats.getInstance().getMegaBstats();
+        numOfLottos = HoldStats.getInstance().getNumOfLottos();
 
         System.out.println(pick5stats);
         System.out.println(megaBstats);

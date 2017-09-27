@@ -1,45 +1,42 @@
 package com.something.jrgun.elluckphant.model;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.something.jrgun.elluckphant.HoldStats;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.HashMap;
 
 /**
  * This class is so numbers can be pulled from database only once
+ *
+ * Grabs ball info from database
+ * Fills the singleton 'global variable'
  */
 
-public class GetNumbers
+public class CalculateStats
 {
-    private double numOfLottos;
     private static HashMap<Integer, Integer> pick5stats; // keeps track of how many times
     private static HashMap<Integer, Integer> megaBstats; // each ball has been picked
-
-
+    private double numOfLottos;
 
     // default constructor
-    public GetNumbers()
+    public CalculateStats()
     {
         fill5stats();
-        fillMegaStats();
-    }
-
-
-    // getters //
-    public double getNumOfLottos() {
-        return numOfLottos;
-    }
-
-    public HashMap<Integer, Integer> getPick5stats() {
-        return pick5stats;
-    }
-
-    public HashMap<Integer, Integer> getMegaBstats() {
-        return megaBstats;
+        fillMegaStats(); // will finish first since less complicated code
     }
 
 
@@ -69,17 +66,24 @@ public class GetNumbers
                 }
 
                 //System.out.println(pick5stats);
+                HoldStats.getInstance().setPick5stats(pick5stats);
+
+                // Quality Assurance
                 checkNumOfLottos /= 5;
                 System.out.println("Num of Lottos from Pick5: " + checkNumOfLottos);
 
-                if(numOfLottos==0){numOfLottos = checkNumOfLottos;}
+                if(numOfLottos==0)
+                {
+                    numOfLottos = checkNumOfLottos;
+                    HoldStats.getInstance().setNumOfLottos(numOfLottos);
+                }
 
-//                // for some reason fill5 is called before fillMega
-//                if(checkNumOfLottos != numOfLottos)
-//                {
-//                    Log.e("WARNING", "NUM OF LOTTOS DO NOT MATCH");
-//                    System.out.println(numOfLottos + " " + checkNumOfLottos);
-//                }
+                // for some reason fill5 is called before fillMega
+                if(checkNumOfLottos != numOfLottos)
+                {
+                    Log.e("WARNING", "NUM OF LOTTOS DO NOT MATCH");
+                    System.out.println(numOfLottos + " " + checkNumOfLottos);
+                }
 
             }
 
@@ -118,6 +122,9 @@ public class GetNumbers
                     ++numOfLottos;
                 }
 
+                HoldStats.getInstance().setMegaBstats(megaBstats);
+                HoldStats.getInstance().setNumOfLottos(numOfLottos);
+
                 System.out.println("Num of Lottos from Mega: " + numOfLottos);
 
 
@@ -130,6 +137,13 @@ public class GetNumbers
 
             }
         });
+    }
+
+
+    // to reduce the typing involved in print statements
+    public static <T> void print( T t)
+    {
+        System.out.println(t);
     }
 
 

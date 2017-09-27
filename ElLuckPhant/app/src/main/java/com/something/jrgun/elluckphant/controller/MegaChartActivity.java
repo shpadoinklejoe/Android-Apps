@@ -16,14 +16,13 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.something.jrgun.elluckphant.HoldStats;
 import com.something.jrgun.elluckphant.R;
-import com.something.jrgun.elluckphant.model.GetNumbers;
+import com.something.jrgun.elluckphant.model.CalculateStats;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.something.jrgun.elluckphant.controller.MainActivity.GN;
 
 /**
  * Created by jrgun on 5/22/2017.
@@ -62,14 +61,13 @@ public class MegaChartActivity extends AppCompatActivity {
         barChart = (BarChart) findViewById(R.id.megaChartView);
 
         // load stats
-        GetNumbers gs = GN;
-        HashMap<Integer, Integer> megaBstats = gs.getMegaBstats();
+        HashMap<Integer, Integer> megaBstats = HoldStats.getInstance().getMegaBstats();
 
         System.out.println("From Activity" + megaBstats);
-        System.out.println(gs.getNumOfLottos());
+        System.out.println(HoldStats.getInstance().getNumOfLottos());
 
         // ratio that each number should be picked
-        double ratio = gs.getNumOfLottos()/15.0;
+        double ratio = HoldStats.getInstance().getNumOfLottos()/15.0;
 
         // save (x,y) values
         ArrayList<BarEntry> evenvalues = new ArrayList<>();

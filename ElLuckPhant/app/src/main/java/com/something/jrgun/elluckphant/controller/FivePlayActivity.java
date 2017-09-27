@@ -9,12 +9,11 @@ import android.widget.TextView;
 
 import com.something.jrgun.elluckphant.R;
 import com.something.jrgun.elluckphant.model.GenerateNumbers;
-import com.something.jrgun.elluckphant.model.GetNumbers;
+import com.something.jrgun.elluckphant.model.CalculateStats;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.something.jrgun.elluckphant.controller.MainActivity.GN;
 
 /**
  * Generates 5 sets of numbers from lotto stats
@@ -58,8 +57,7 @@ public class FivePlayActivity extends AppCompatActivity
 
 
         // create lotto object that fills  statistical HashMaps
-        GetNumbers gs = GN;
-        generateNumbers = new GenerateNumbers(gs.getPick5stats(), gs.getMegaBstats(), gs.getNumOfLottos());
+        generateNumbers = new GenerateNumbers( 1 );
 
         // generate 5 sets of lotto numbers
         Button generate = (Button) findViewById(R.id.generate5);
