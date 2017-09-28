@@ -1,6 +1,5 @@
 package com.something.jrgun.elluckphant.model;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -8,14 +7,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.something.jrgun.elluckphant.HoldStats;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.util.HashMap;
 
@@ -28,6 +19,7 @@ import java.util.HashMap;
 
 public class CalculateStats
 {
+    private static FirebaseDatabase mydatabase; // so stats based on same instance
     private static HashMap<Integer, Integer> pick5stats; // keeps track of how many times
     private static HashMap<Integer, Integer> megaBstats; // each ball has been picked
     private double numOfLottos;
@@ -35,6 +27,7 @@ public class CalculateStats
     // default constructor
     public CalculateStats()
     {
+        mydatabase = FirebaseDatabase.getInstance();
         fill5stats();
         fillMegaStats(); // will finish first since less complicated code
     }
@@ -44,7 +37,7 @@ public class CalculateStats
     private void fill5stats()
     {
 
-        FirebaseDatabase.getInstance().getReference("winning5").addValueEventListener(new ValueEventListener() {
+        mydatabase.getReference("winning5").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
@@ -99,7 +92,7 @@ public class CalculateStats
     private void fillMegaStats()
     {
 
-        FirebaseDatabase.getInstance().getReference("winningmega").addValueEventListener(new ValueEventListener() {
+        mydatabase.getReference("winningmega").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {

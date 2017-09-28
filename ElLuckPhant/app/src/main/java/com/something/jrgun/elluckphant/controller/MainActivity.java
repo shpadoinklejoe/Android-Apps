@@ -6,15 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.something.jrgun.elluckphant.HoldStats;
 import com.something.jrgun.elluckphant.R;
 import com.something.jrgun.elluckphant.model.CalculateStats;
-import com.something.jrgun.elluckphant.model.GetLast25;
+import com.something.jrgun.elluckphant.model.Last25;
 
 public class MainActivity extends AppCompatActivity {
 
     // check for updates in background
-    GetLast25 gl25 = new GetLast25();
+    Last25 l25 = new Last25();
 
     // generate statistics
     CalculateStats cs = new CalculateStats();
