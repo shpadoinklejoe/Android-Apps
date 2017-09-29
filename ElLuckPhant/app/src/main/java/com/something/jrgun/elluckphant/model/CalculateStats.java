@@ -13,7 +13,7 @@ import java.util.HashMap;
 /**
  * This class is so numbers can be pulled from database only once
  *
- * Grabs ball info from database
+ * Grabs ball info from database (always listening)
  * Fills the singleton 'global variable'
  */
 

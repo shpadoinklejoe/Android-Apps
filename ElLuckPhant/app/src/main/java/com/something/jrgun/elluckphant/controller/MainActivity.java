@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
     // check for updates in background
     Last25 l25 = new Last25();
 
-    // generate statistics
-    CalculateStats cs = new CalculateStats();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

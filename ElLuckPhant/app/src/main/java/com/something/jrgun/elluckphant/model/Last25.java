@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 
 /**
  * Checks for any updates to database in background
- * updates database and BallStats if necessary
+ * && updates database if necessary
  */
 
 public class Last25 {
@@ -32,6 +32,7 @@ public class Last25 {
     private static String allpick5 = null;
     private static String allmega = null;
 
+    // constructor
     public Last25()
     {
         new GetLast25().execute();
@@ -41,7 +42,6 @@ public class Last25 {
     // retrieve last 25 winning numbers from lottery's official website
     private class GetLast25 extends AsyncTask<Void, Void, Void>
     {
-
         @Override
         protected Void doInBackground(Void... params)
         {
@@ -55,6 +55,7 @@ public class Last25 {
                 {
                     last25drawings.add(new ArrayList<String>(e.getElementsByTag("td").eachText()));
                 }
+
             } catch (IOException e)
             {
                 e.printStackTrace();
@@ -62,13 +63,13 @@ public class Last25 {
 
             print("last 25: ");
             print2D(last25drawings);
+            checkLast25();
             return null;
         }
 
         @Override
-        protected void onPostExecute(Void result)
-        {
-            checkLast25();
+        protected void onPostExecute(Void result) {
+
         }
     }
 
@@ -77,7 +78,7 @@ public class Last25 {
     private void checkLast25()
     {
         mydatabase = FirebaseDatabase.getInstance();
-        mydatabase.getReference("lastupdate").addValueEventListener(new ValueEventListener() {
+        mydatabase.getReference("lastupdate").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
@@ -121,9 +122,9 @@ public class Last25 {
                         {
                             print("needs to be added: " + thisdraw);
 
-                            // first save them into their respective arrays
-                            newpick5.addAll( thisdraw.subList(1,6) );
-                            newmega.add( thisdraw.get(6) );
+                            // save them to the front of their respective arrays
+                            newpick5.addAll(0, thisdraw.subList(1,6) );
+                            newmega.add(0, thisdraw.get(6) );
                         }
                     }
 
@@ -132,6 +133,9 @@ public class Last25 {
 
                 }
                 // else do nothing
+                else{
+                    print("Database up to date!");
+                }
 
             }
 
@@ -144,22 +148,22 @@ public class Last25 {
 
 
     // updates lotto numbers in my database
-    private void updateDatabase(final String newpick5, final String newmega, String lastdraw)
+    private void updateDatabase(final String newpick5, final String newmega, final String lastdraw)
     {
         print("new pick 5 balls: " + newpick5);
         print("new mega balls: " + newmega);
         print("new update date: " + lastdraw);
 
-
-        // first retrieve data
-        mydatabase.getReference("winning5").addValueEventListener(new ValueEventListener() {
+        // first retrieve SINGLE REFERENCE data
+        mydatabase.getReference("winning5").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                // split out tabs
-                String[] split = dataSnapshot.getValue(String.class).split("\\s+") ;
+//                String[] split = dataSnapshot.getValue(String.class).split("\\s+");
+//                allpick5 = newpick5 + " " + TextUtils.join(" ", split);
 
-                allpick5 = newpick5 + " " + TextUtils.join(" ", split);
+                allpick5 = newpick5 + " " + dataSnapshot.getValue(String.class);
+                mydatabase.getReference().child("winning5").setValue(allpick5);
 
             }
             @Override
@@ -167,24 +171,22 @@ public class Last25 {
             }
         });
 
-        mydatabase.getReference("winningmega").addValueEventListener(new ValueEventListener() {
+        mydatabase.getReference("winningmega").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 allmega = newmega + " " + dataSnapshot.getValue(String.class);
+
+                mydatabase.getReference().child("winningmega").setValue(allmega);
+                mydatabase.getReference().child("lastupdate").setValue(lastdraw);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
 
-        print("all pick5: " + allpick5);
-        print("all mega: " + allmega);
-
-
-        // the very last step is to refill the global stats
-        //CalculateStats cs = new CalculateStats();
     }
+
 
 
     // to reduce the typing involved in print statements
