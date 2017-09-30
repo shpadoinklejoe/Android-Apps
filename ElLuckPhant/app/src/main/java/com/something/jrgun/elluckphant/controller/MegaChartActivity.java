@@ -18,15 +18,11 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.something.jrgun.elluckphant.HoldStats;
 import com.something.jrgun.elluckphant.R;
-import com.something.jrgun.elluckphant.model.CalculateStats;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by jrgun on 5/22/2017.
- */
 
 public class MegaChartActivity extends AppCompatActivity {
 
@@ -62,9 +58,6 @@ public class MegaChartActivity extends AppCompatActivity {
 
         // load stats
         HashMap<Integer, Integer> megaBstats = HoldStats.getInstance().getMegaBstats();
-
-        System.out.println("From Activity" + megaBstats);
-        System.out.println(HoldStats.getInstance().getNumOfLottos());
 
         // ratio that each number should be picked
         double ratio = HoldStats.getInstance().getNumOfLottos()/15.0;

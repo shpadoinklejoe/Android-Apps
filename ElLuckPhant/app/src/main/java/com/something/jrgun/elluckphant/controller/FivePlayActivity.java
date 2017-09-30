@@ -3,13 +3,13 @@ package com.something.jrgun.elluckphant.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.something.jrgun.elluckphant.R;
 import com.something.jrgun.elluckphant.model.GenerateNumbers;
-import com.something.jrgun.elluckphant.model.CalculateStats;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,9 +22,8 @@ import java.util.Arrays;
 
 public class FivePlayActivity extends AppCompatActivity
 {
-
     private ArrayList<ArrayList<TextView>> balls;
-    GenerateNumbers generateNumbers;
+    GenerateNumbers generateNumbers = new GenerateNumbers( 1 ); // initialize
 
 
     @Override
@@ -56,9 +55,6 @@ public class FivePlayActivity extends AppCompatActivity
         });
 
 
-        // create lotto object that fills  statistical HashMaps
-        generateNumbers = new GenerateNumbers( 1 );
-
         // generate 5 sets of lotto numbers
         Button generate = (Button) findViewById(R.id.generate5);
         generate.setOnClickListener(new View.OnClickListener() {
@@ -68,9 +64,10 @@ public class FivePlayActivity extends AppCompatActivity
                 // generate lotto numbers
                 ArrayList<ArrayList<Integer>> play5 = generateNumbers.statisticalPlay5();
 
-                // if loading from file fails -> just randomly generate numbers
+                // if loading fails -> just randomly generate numbers
                 if( play5 == null )
                 {
+
                     for(int i=0; i<5; ++i)
                     {
                         // generate lotto numbers
@@ -85,7 +82,9 @@ public class FivePlayActivity extends AppCompatActivity
                     }
                 }
                 // else we can generate numbers based on statistics!!
-                else{
+                else
+                {
+                    System.out.println("Picks Generated");
                     for(int i=0; i<5; ++i)
                     {
                         System.out.println(play5.get(i));

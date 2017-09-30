@@ -1,20 +1,23 @@
 package com.something.jrgun.elluckphant.model;
 
 import android.util.Log;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.something.jrgun.elluckphant.HoldStats;
-
 import java.util.HashMap;
 
 /**
- * This class is so numbers can be pulled from database only once
+ * This class generates statistics on each number pulled from a lottery drawing
  *
- * Grabs ball info from database (always listening)
- * Fills the singleton 'global variable'
+ * It fills the singleton 'global variable' so the statistics only need to be generated once
+ *
+ * This is an open thread to ensure statistics are always up to date
+ *
+ * My Firebase database contains lists of all previously pulled lottery numbers
+ * (note: only winning numbers past 10/25/2013,
+ *  since that's when the format changed to numbers (1 - 75) for Pick 5  &&  (1 - 15) for Powerball )
  */
 
 public class CalculateStats
@@ -36,8 +39,9 @@ public class CalculateStats
     // fill stats for pick 5 from file
     private void fill5stats()
     {
-
+        // opens thread
         mydatabase.getReference("winning5").addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
@@ -58,20 +62,20 @@ public class CalculateStats
                     ++checkNumOfLottos;
                 }
 
-                //System.out.println(pick5stats);
                 HoldStats.getInstance().setPick5stats(pick5stats);
-
-                // Quality Assurance
                 checkNumOfLottos /= 5;
-                System.out.println("Num of Lottos from Pick5: " + checkNumOfLottos);
 
+                print("pick 5 stats: " + pick5stats);
+                print("Num of Lottos from Pick5: " + checkNumOfLottos);
+
+                // if for some reason fill5 is called before fillMega
                 if(numOfLottos==0)
                 {
                     numOfLottos = checkNumOfLottos;
                     HoldStats.getInstance().setNumOfLottos(numOfLottos);
                 }
 
-                // for some reason fill5 is called before fillMega
+                // Quality Assurance
                 if(checkNumOfLottos != numOfLottos)
                 {
                     Log.e("WARNING", "NUM OF LOTTOS DO NOT MATCH");
@@ -91,8 +95,9 @@ public class CalculateStats
     // fill stats for mega ball from file
     private void fillMegaStats()
     {
-
+        // opens another thread
         mydatabase.getReference("winningmega").addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
@@ -118,11 +123,9 @@ public class CalculateStats
                 HoldStats.getInstance().setMegaBstats(megaBstats);
                 HoldStats.getInstance().setNumOfLottos(numOfLottos);
 
-                System.out.println("Num of Lottos from Mega: " + numOfLottos);
-
-
-
-
+                print("megaball stats: " + megaBstats);
+                print("Num of Lottos from Mega: " + numOfLottos);
+                print("Expected number of pulls: " + numOfLottos/15.0);
             }
 
             @Override

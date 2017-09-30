@@ -18,16 +18,12 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.something.jrgun.elluckphant.HoldStats;
 import com.something.jrgun.elluckphant.R;
-import com.something.jrgun.elluckphant.model.CalculateStats;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
-/**
- * Created by jrgun on 5/22/2017.
- */
 
 public class Pick5ChartActivity extends AppCompatActivity {
 
@@ -64,9 +60,6 @@ public class Pick5ChartActivity extends AppCompatActivity {
         // load stats
         HashMap<Integer, Integer> pick5stats = HoldStats.getInstance().getPick5stats();
 
-        System.out.println("From Activity" + pick5stats);
-        System.out.println(HoldStats.getInstance().getNumOfLottos());
-
         // ratio that each number should be picked
         double ratio = HoldStats.getInstance().getNumOfLottos()/15.0;
 
@@ -97,13 +90,6 @@ public class Pick5ChartActivity extends AppCompatActivity {
         lllegend.setColor(-1221797); // default limit line color
         lllegend.setVisible(false);
 
-
-//        // label x-axis
-//        ArrayList<Integer> xLabels = new ArrayList<>();
-//        for( int i=1; i<=75; ++i)
-//        {
-//            xLabels.add(i);
-//        }
 
         // fill Bar Graph
         barChart.setData(new BarData(oddDataPoints, evenDataPoints,lllegend));

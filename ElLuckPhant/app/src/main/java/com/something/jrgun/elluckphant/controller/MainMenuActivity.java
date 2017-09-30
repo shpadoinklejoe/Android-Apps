@@ -10,9 +10,6 @@ import com.something.jrgun.elluckphant.HoldStats;
 import com.something.jrgun.elluckphant.R;
 import com.something.jrgun.elluckphant.model.CalculateStats;
 
-/**
- * Created by jrgun on 4/12/2017.
- */
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -21,12 +18,8 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_mainmenu);
 
-        // generate statistics
+        // generate statistics && updates singleton variables
         CalculateStats cs = new CalculateStats();
-
-//        System.out.println("DID STATS?" + HoldStats.getInstance().getPick5stats());
-//        System.out.println(HoldStats.getInstance().getMegaBstats());
-//        System.out.println(HoldStats.getInstance().getNumOfLottos());
 
 
         // to 1 Play

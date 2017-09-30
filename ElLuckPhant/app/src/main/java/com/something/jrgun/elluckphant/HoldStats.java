@@ -3,6 +3,7 @@ package com.something.jrgun.elluckphant;
 import java.util.HashMap;
 
 /**
+ * Singleton class:
  * Ability to share variables across Activities
  * Only allows one instance of these variables
  *
@@ -26,13 +27,20 @@ public class HoldStats
     private HoldStats() {
     }
 
-    // set all variables
-    public void setAll(HashMap<Integer, Integer> p5s, HashMap<Integer, Integer> mbs, double nol)
-    {
-        pick5stats = p5s;
-        megaBstats = mbs;
-        numOfLottos = nol;
+
+    // getters
+    public static HashMap<Integer, Integer> getPick5stats() {
+        return pick5stats;
     }
+
+    public static HashMap<Integer, Integer> getMegaBstats() {
+        return megaBstats;
+    }
+
+    public double getNumOfLottos() {
+        return numOfLottos;
+    }
+
 
     // setters
     public static void setPick5stats(HashMap<Integer, Integer> pick5stats) {
@@ -47,17 +55,12 @@ public class HoldStats
         this.numOfLottos = numOfLottos;
     }
 
-    // getters
-    public static HashMap<Integer, Integer> getPick5stats() {
-        return pick5stats;
-    }
-
-    public static HashMap<Integer, Integer> getMegaBstats() {
-        return megaBstats;
-    }
-
-    public double getNumOfLottos() {
-        return numOfLottos;
+    // set all variables
+    public void setAll(HashMap<Integer, Integer> p5s, HashMap<Integer, Integer> mbs, double nol)
+    {
+        pick5stats = p5s;
+        megaBstats = mbs;
+        numOfLottos = nol;
     }
 
 

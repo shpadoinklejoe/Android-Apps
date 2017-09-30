@@ -21,13 +21,13 @@ import java.text.SimpleDateFormat;
 
 
 /**
- * Checks for any updates to database in background
+ * Checks Official MegaMillions website for any updates to database (on seperate thread)
  * && updates database if necessary
  */
 
 public class Last25 {
 
-    private static FirebaseDatabase mydatabase; // so based on same instance
+    private static FirebaseDatabase mydatabase; // so all db access based on same instance
     private static ArrayList<ArrayList<String>> last25drawings = null; // last 25 winning numbers pulled from website
     private static String allpick5 = null;
     private static String allmega = null;
@@ -61,10 +61,13 @@ public class Last25 {
                 e.printStackTrace();
             }
 
-            print("last 25: ");
-            print2D(last25drawings);
-            checkLast25();
-            return null;
+            // size will be zero if wifi doesn't allow access to megamillions website
+            if( last25drawings.size() != 0)
+            {
+                checkLast25();
+            }
+
+            return null; // required return statement for AsyncTasks
         }
 
         @Override
@@ -97,7 +100,7 @@ public class Last25 {
                 print("last update: " + lastupdate);
                 print("last draw: " + lastdraw);
 
-                // if needs updating
+                // if db needs updating
                 if( lastupdate.before(lastdraw) )
                 {
                     ArrayList<String> newpick5 = new ArrayList<>();
@@ -150,11 +153,7 @@ public class Last25 {
     // updates lotto numbers in my database
     private void updateDatabase(final String newpick5, final String newmega, final String lastdraw)
     {
-        print("new pick 5 balls: " + newpick5);
-        print("new mega balls: " + newmega);
-        print("new update date: " + lastdraw);
-
-        // first retrieve SINGLE REFERENCE data
+        // first retrieve SINGLE REFERENCE data (NOT an open thread)
         mydatabase.getReference("winning5").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
@@ -165,6 +164,7 @@ public class Last25 {
                 allpick5 = newpick5 + " " + dataSnapshot.getValue(String.class);
                 mydatabase.getReference().child("winning5").setValue(allpick5);
 
+                print("new pick 5 balls added: " + newpick5);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -179,6 +179,8 @@ public class Last25 {
 
                 mydatabase.getReference().child("winningmega").setValue(allmega);
                 mydatabase.getReference().child("lastupdate").setValue(lastdraw);
+
+                print("new mega balls added: " + newmega);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -188,14 +190,13 @@ public class Last25 {
     }
 
 
-
     // to reduce the typing involved in print statements
     public static <T> void print( T t)
     {
         System.out.println(t);
     }
 
-    // generic 2D printing of arraylist objects
+    // generic 2D printing of arraylist objects for troubleshooting
     public static <T> void print2D( ArrayList<ArrayList<T>> al)
     {
         for( ArrayList<T> l : al )

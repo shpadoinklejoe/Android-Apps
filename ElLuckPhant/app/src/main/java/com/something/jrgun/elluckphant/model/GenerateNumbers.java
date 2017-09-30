@@ -37,8 +37,8 @@ public class GenerateNumbers
     private HashMap<Integer, Integer> pick5stats; // keeps track of how many times
     private HashMap<Integer, Integer> megaBstats; // each ball has been picked
 
-    // default constructor
-    // generates numbers randomly
+
+    // default constructor - generates numbers randomly
     public GenerateNumbers()
     {
         System.out.println("default constructor");
@@ -46,28 +46,17 @@ public class GenerateNumbers
     }
 
     // constructor for statistical play
+    // any int argument is fine, an int just ensures statistical
     public GenerateNumbers( int n )
     {
         System.out.println("statistical constructor");
-        pick5stats = HoldStats.getInstance().getPick5stats();
-        megaBstats = HoldStats.getInstance().getMegaBstats();
-        numOfLottos = HoldStats.getInstance().getNumOfLottos();
+        HoldStats hs = HoldStats.getInstance();
+        pick5stats = hs.getPick5stats();
+        megaBstats = hs.getMegaBstats();
+        numOfLottos = hs.getNumOfLottos();
 
-        System.out.println(pick5stats);
-        System.out.println(megaBstats);
-        System.out.println(numOfLottos);
     }
 
-    private int countLottos()
-    {
-        int count = 0;
-        for( Map.Entry<Integer, Integer> e : megaBstats.entrySet() )
-        {
-            count += e.getValue();
-        }
-
-        return count;
-    }
 
     // getter for ArrayList of lotto balls
     public ArrayList<Integer> getNums()
@@ -89,7 +78,7 @@ public class GenerateNumbers
 
 
 
-    // generate lotto numbers randomly
+    // generate lotto numbers 'randomly'
     public static ArrayList<Integer> generateRandom()
     {
         ArrayList<Integer> randNums = new ArrayList<>();
@@ -112,38 +101,33 @@ public class GenerateNumbers
 
 
     // Generates 1 set of numbers based on frequency count
-    // Key = lotto ball face value
-    // Value = number of times ball picked
+    // I don't 'mod' to get range of desired numbers, since modding has been been proven to be bias
     private ArrayList<Integer> statisticalPicks()
     {
-        System.out.println(pick5stats);
-        System.out.println(megaBstats);
-        System.out.println(numOfLottos);
 
         if(pick5stats == null || megaBstats == null || numOfLottos == 0)
         {
             Log.e("WARNING", "THERE WAS A PROBLEM GENERATING STATISTICS");
-            return generateRandom();
+            return generateRandom(); // returns random numbers so app doesn't break
         }
         else{
             ArrayList<Integer> randNums = new ArrayList<>();
             double ratio = 1 / 15.0; // (5/75) == (1/15)
 
             // Generate Pick 5
-            for (int i = 0; i < 5; ++i) {
+            for (int i = 0; i < 5; ++i)
+            {
                 int num = rand.nextInt(100); // no number is favored when modding by multiple of 10
-                ++num; // since random number chosen was between 0 -> 74
+                ++num; // increment randomInt by one since random number chosen was between 0 -> 74
 
-
-                // since modding to get random number is statistically flawed
+                // continue randomly generating number if:
+                // a. out of range, b. number has been picked above expected ratio, c. already chosen
                 while (num > 75 || (pick5stats.get(num) / numOfLottos) > ratio || randNums.contains(num)) {
                     num = rand.nextInt(100);
                     ++num;
                 }
 
-
                 randNums.add(num); // add number
-                //pick5stats.put(num, pick5stats.get(num)+1 ); // increment count
 
             }
             Collections.sort(randNums); // sort for sequential output
@@ -157,7 +141,6 @@ public class GenerateNumbers
             }
 
             randNums.add(num); // add number
-            //megaBstats.put( num, megaBstats.get(num)+1 ); // increment count
 
             return randNums;
         }
@@ -170,9 +153,6 @@ public class GenerateNumbers
     // ( because it's not good to over-play a single (randomly chosen) number multiple times )
     public ArrayList<ArrayList<Integer>> statisticalPlay5()
     {
-        System.out.println(pick5stats);
-        System.out.println(megaBstats);
-        System.out.println(numOfLottos);
 
         if(pick5stats == null || megaBstats == null || numOfLottos == 0)
         {
@@ -180,9 +160,9 @@ public class GenerateNumbers
             return null;
         }
 
-        ArrayList<ArrayList<Integer>> play5 = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Integer> play5pick5 = new ArrayList<>();
-        ArrayList<Integer> play5mega = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> play5 = new ArrayList<ArrayList<Integer>>(); // only stores 5 lotto picks
+        ArrayList<Integer> play5pick5 = new ArrayList<>(); // stores all statistically avail pick 5 nums
+        ArrayList<Integer> play5mega = new ArrayList<>(); // stores all statistically avail mega nums
         double ratio = 1/15.0; // (5/75) == (1/15)
 
         // generate Pick 5 numbers
@@ -194,7 +174,8 @@ public class GenerateNumbers
             }
         }
         Collections.shuffle(play5pick5); // shuffle the order of poolable numbers
-        System.out.println(play5pick5);
+        print("Pick 5 numbers (" + play5pick5.size() + ")");
+        print(play5pick5);
 
         // generate Mega Ball numbers
         for(Map.Entry<Integer, Integer> e : megaBstats.entrySet())
@@ -205,7 +186,8 @@ public class GenerateNumbers
             }
         }
         Collections.shuffle(play5mega); // randomize
-        System.out.println(play5mega + "\n");
+        print("Megaball numbers (" + play5mega.size() + ")");
+        print(play5mega);
 
         // fill 2D array with 5 sets of lotto numbers
         for( int i=0; i<25; ++i )
@@ -224,7 +206,7 @@ public class GenerateNumbers
         for( ArrayList<Integer> array : play5 )
         {
             Collections.sort(array);
-            play5.get(play).add( play5mega.get(play) );
+            play5.get(play).add( play5mega.get(play) ); // then add a megaball to end
             ++play;
         }
 
@@ -232,10 +214,11 @@ public class GenerateNumbers
     }
 
     // to print without typing out "system.out.println"
-    public void print()
+    public static <T> void print( T t)
     {
-        System.out.println(this);
+        System.out.println(t);
     }
+
 
     // nicely formatted lotto numbers
     public String toString()
