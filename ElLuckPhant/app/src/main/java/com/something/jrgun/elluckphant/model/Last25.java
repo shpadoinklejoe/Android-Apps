@@ -62,7 +62,7 @@ public class Last25 {
             }
 
             // size will be zero if wifi doesn't allow access to megamillions website
-            if( last25drawings.size() != 0)
+            if( last25drawings != null)
             {
                 checkLast25();
             }

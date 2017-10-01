@@ -15,9 +15,6 @@ public class MainActivity extends AppCompatActivity {
     // check for updates in background
     Last25 l25 = new Last25();
 
-    // generate statistics && updates singleton variables
-    CalculateStats cs = new CalculateStats();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+
+                // generate statistics && updates singleton variables
+                CalculateStats cs = new CalculateStats();
+
                 startActivity( new Intent(MainActivity.this, MainMenuActivity.class) );
             }
         });
