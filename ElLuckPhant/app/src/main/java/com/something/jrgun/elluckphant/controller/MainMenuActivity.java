@@ -6,9 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.something.jrgun.elluckphant.HoldStats;
 import com.something.jrgun.elluckphant.R;
-import com.something.jrgun.elluckphant.model.CalculateStats;
+
 
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -17,9 +16,6 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_mainmenu);
-
-        // generate statistics && updates singleton variables
-        CalculateStats cs = new CalculateStats();
 
 
         // to 1 Play
