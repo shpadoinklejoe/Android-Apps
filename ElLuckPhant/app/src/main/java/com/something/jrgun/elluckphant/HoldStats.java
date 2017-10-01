@@ -14,8 +14,8 @@ public class HoldStats
 {
     private static final HoldStats ourInstance = new HoldStats();
 
-    private static HashMap<Integer, Integer> pick5stats;
-    private static HashMap<Integer, Integer> megaBstats;
+    private static HashMap<Integer, Integer> pick5stats = null;
+    private static HashMap<Integer, Integer> megaBstats = null;
     private double numOfLottos;
 
     // retrieves the instance from anywhere
